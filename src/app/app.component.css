@@ -1,0 +1,60 @@
+.main-container {
+    padding: 10px;
+    background-color:#5c5959;
+  }
+  
+  .header {
+    font-weight: bold;
+    text-align: left;
+    color: aqua;
+  
+  }
+  
+  .tab {
+   overflow: hidden;
+    border: 10px solid #242323;
+    background-color: rgb(156, 157, 158);
+    width:335px
+  }
+  
+  .tab button {
+    background-color: white;
+    float: left;
+    height: 75px;
+    width: 150px;
+    cursor: pointer;
+    padding: 15px 17px;
+    font-size: 25px;
+  }
+  
+  .tab button:hover {
+    background-color: #bdbcbc;
+  }
+  
+  .tab button.active {
+    background-color: rgb(231, 226, 226);
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: block;
+    padding: 100%;
+    border: 1px solid #ccc;
+    border-top: none;
+  }
+  
+  .tablinks {
+    color: rgb(11, 11, 12);
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 15px 17px;
+    font-size: 50px;
+    width: 45%;
+  }
+  
+  img {
+    width: 100px;
+    /* height: auto; */
+  }
