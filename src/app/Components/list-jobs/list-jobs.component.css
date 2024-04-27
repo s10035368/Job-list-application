@@ -1,0 +1,19 @@
+img {
+    width: 120px;
+    height: 120px;
+}
+
+svg {
+    height: 40px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.active{
+    color: rgb(140, 28, 5);   
+}
+
+a{
+    cursor: pointer;
+}
+
