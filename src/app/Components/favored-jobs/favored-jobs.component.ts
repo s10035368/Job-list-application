@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { CommonService } from '../../common.services';
+import { JobService } from '../../common.services';
 import { HttpClient } from '@angular/common/http';
 
 export interface JobData {
@@ -27,7 +27,7 @@ export class FavoriteJobsComponent  implements OnInit {
   favoriteJobList: JobData[] = [];
 
 
-  constructor(private commonservice: CommonService,
+  constructor(private commonservice: JobService,
     private router: Router) { }
 
   ngOnInit(): void {

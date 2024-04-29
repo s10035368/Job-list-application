@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { CommonService } from '../../common.services';
+import { JobService } from '../../common.services';
 import { Location } from '@angular/common';
 
 
@@ -29,18 +29,14 @@ export interface JobDetailsData {
   styleUrl: 'detailed-jobs.component.css'
 })
 export class JobDetailsComponent implements OnInit {
-  constructor(private commonservice: CommonService,
+  constructor(private jobservice: JobService,
     private router: Router,
     private location: Location) { }
   http = inject(HttpClient)
   jobDetails!: JobDetailsData;
 
-  goBack() {
-    this.location.back()
-  }
-
   ngOnInit(): void {
-    const ListId = this.commonservice.SelectedJob.id;
+    const ListId = this.jobservice.SelectedJob.id;
     this.featchJobDetails(ListId);
   }
 
@@ -49,6 +45,10 @@ export class JobDetailsComponent implements OnInit {
     this.http.get<JobDetailsData>(url).subscribe((data => {
       this.jobDetails = data;
     }))
+  }
+
+  goBack() {
+    this.location.back()
   }
 
 }

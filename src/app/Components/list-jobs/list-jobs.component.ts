@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, inject } from '@angular/core';
-import { CommonService } from '../../common.services';
+import { JobService } from '../../common.services';
 import { Router } from '@angular/router';
 
 
@@ -26,20 +26,20 @@ export class AllJobListComponent implements OnInit {
   jobList: JobData[] = [];
   isSelected: boolean = false;
 
-  constructor(private commonservice: CommonService, private router: Router) { }
+  constructor(private jobservice: JobService, private router: Router) { }
 
   ngOnInit(): void {
-    if (this.commonservice.selectedJobArray.length != 0) {
-      this.jobList = this.commonservice.DuplicateJobList;
+    if (this.jobservice.selectedJobArray.length != 0) {
+      this.jobList = this.jobservice.DuplicateJobList;
     } else {
       this.fetchJobList();
     }
   }
 
   fetchJobList() {
-    this.commonservice.fetchData().subscribe(data => {
+    this.jobservice.fetchData().subscribe(data => {
       this.jobList = data;
-      this.commonservice.DuplicateJobList = this.jobList;
+      this.jobservice.DuplicateJobList = this.jobList;
 
       if (localStorage['favoriteJob']) {
         let favoriteJobList: JobData[] = JSON.parse(localStorage.getItem('favoriteJob') || '{}');
@@ -70,21 +70,21 @@ export class AllJobListComponent implements OnInit {
       });
       localStorage.setItem('favoriteJob', JSON.stringify(savedArray));
     } else {
-      this.commonservice.selectedJobArray = []
+      this.jobservice.selectedJobArray = []
       this.onJobSelect(job);
     }
 
   }
 
   onJobSelect(job: JobData) {
-    if (this.commonservice.selectedJobArray.length === 0) {
-      this.commonservice.selectedJobArray.push(job);
-      this.commonservice.duplicateArray = this.commonservice.selectedJobArray;
-      this.commonservice.favoriteJob = this.commonservice.selectedJobArray;
+    if (this.jobservice.selectedJobArray.length === 0) {
+      this.jobservice.selectedJobArray.push(job);
+      this.jobservice.duplicateArray = this.jobservice.selectedJobArray;
+      this.jobservice.favoriteJob = this.jobservice.selectedJobArray;
       let savedArray: JobData[] = JSON.parse(localStorage.getItem('favoriteJob') || '{}')
       if (savedArray.length > 0) {
         let idMap = new Map<number, JobData>(savedArray.map(obj => [obj.id, obj]));
-        for (let obj of this.commonservice.favoriteJob) {
+        for (let obj of this.jobservice.favoriteJob) {
           if (!idMap.has(obj.id)) {
             savedArray.push(obj);
             idMap.set(obj.id, obj);
@@ -92,30 +92,30 @@ export class AllJobListComponent implements OnInit {
           localStorage.setItem('favoriteJob', JSON.stringify(savedArray))
         }
       } else {
-        localStorage.setItem('favoriteJob', JSON.stringify(this.commonservice.favoriteJob))
+        localStorage.setItem('favoriteJob', JSON.stringify(this.jobservice.favoriteJob))
       }
     }
     else {
-      for (let i = 0; i < this.commonservice.selectedJobArray.length; i++) {
-        if (this.commonservice.selectedJobArray.find(x => x.id === job.id) === undefined) {
-          this.commonservice.duplicateArray.push(job);
+      for (let i = 0; i < this.jobservice.selectedJobArray.length; i++) {
+        if (this.jobservice.selectedJobArray.find(x => x.id === job.id) === undefined) {
+          this.jobservice.duplicateArray.push(job);
           break;
         }
         else {
-          this.commonservice.duplicateArray.forEach((item, index) => {
+          this.jobservice.duplicateArray.forEach((item, index) => {
             if (item.id === job.id) {
-              this.commonservice.duplicateArray.splice(index, 1);
+              this.jobservice.duplicateArray.splice(index, 1);
             }
           });
           break;
         }
       }
-      this.commonservice.selectedJobArray = this.commonservice.duplicateArray;
-      this.commonservice.favoriteJob = this.commonservice.selectedJobArray;
+      this.jobservice.selectedJobArray = this.jobservice.duplicateArray;
+      this.jobservice.favoriteJob = this.jobservice.selectedJobArray;
       let savedArray: JobData[] = JSON.parse(localStorage.getItem('favoriteJob') || '{}')
       if (savedArray.length > 0) {
         let idMap = new Map<number, JobData>(savedArray.map(obj => [obj.id, obj]));
-        for (let obj of this.commonservice.favoriteJob) {
+        for (let obj of this.jobservice.favoriteJob) {
           if (!idMap.has(obj.id)) {
             savedArray.push(obj);
             idMap.set(obj.id, obj);
@@ -123,13 +123,13 @@ export class AllJobListComponent implements OnInit {
           localStorage.setItem('favoriteJob', JSON.stringify(savedArray))
         }
       } else {
-        localStorage.setItem('favoriteJob', JSON.stringify(this.commonservice.favoriteJob))
+        localStorage.setItem('favoriteJob', JSON.stringify(this.jobservice.favoriteJob))
       }
     }
   }
 
   jobDetail(selectedJob: JobData) {
-    this.commonservice.SelectedJob = selectedJob;
+    this.jobservice.SelectedJob = selectedJob;
     this.router.navigate(['/jobDetails']);
   }
 }

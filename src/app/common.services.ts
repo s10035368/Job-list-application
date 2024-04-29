@@ -15,7 +15,7 @@ export interface JobData {
   providedIn: 'root'
 })
 
-export class CommonService {
+export class JobService {
   selectedJobArray: JobData[] = [];
   duplicateArray : JobData[] = [];
   SelectedJob!: JobData;
