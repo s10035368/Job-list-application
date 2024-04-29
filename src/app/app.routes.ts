@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { AllJobListComponent } from './Components/all-job-list/all-job-list.component';
-import { JobDetailsComponent } from './Components/job-details-display/job-details-display.component';
-import { FavoriteJobsComponent } from './Components/job-favorite/jobs-favorite.component';
+import { AllJobListComponent } from './Components/list-jobs/list-jobs.component';
+import { JobDetailsComponent } from './Components/detailed-jobs/detailed-jobs.component';
+import { FavoriteJobsComponent } from './Components/favored-jobs/favored-jobs.component';
 
 export const routes: Routes = [
     {path: "", component: AllJobListComponent},

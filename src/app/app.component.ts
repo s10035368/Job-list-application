@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { AllJobListComponent} from './Components/all-job-list/all-job-list.component';
+import { AllJobListComponent} from './Components/list-jobs/list-jobs.component';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,7 @@ export class AppComponent {
 
   constructor(private router: Router) { }
 
-  setTab(name: string) {
-    this.router.navigate([`/${name}`]);
+  mainTab(identity: string) {
+    this.router.navigate([`/${identity}`]);
   }
 }
