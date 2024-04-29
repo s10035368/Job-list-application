@@ -198,7 +198,7 @@ const DETAILED = {
   },
 };
 
-const ALL_JOBS = [
+export const ALL_JOBS = [
   {
     id: 98596,
     companyName: "Kraken",

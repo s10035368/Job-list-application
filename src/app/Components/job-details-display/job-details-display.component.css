@@ -1,0 +1,41 @@
+svg {
+  height: 30px;
+  width: 40px;
+  cursor: pointer;
+  padding-top: 30px;
+  color: rgba(117, 84, 87, 0.871);
+  /* margin-top: 35px; */
+  margin-bottom: -8px;
+}
+
+.back {
+  background-color: grey;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.companyLogo {
+  width: 120px;
+  height: 120px;
+}
+
+.sec1 {
+  display: inline-block;
+  color: white;
+  padding: 10px 20px;
+  margin: 0px 5px 0px 5px;
+  border-radius: 20px;
+  background-color: #5221f3;
+  margin-top: 8px;
+}
+
+.sec2 {
+  display: inline-block;
+  color: white;
+  padding: 10px 20px;
+  margin-right: 5px;
+  font-family: Arial;
+  border-radius: 20px;
+  background-color: #5221f3;
+  margin-top: 8px;
+}
