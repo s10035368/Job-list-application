@@ -45,10 +45,10 @@ export class ListedJobComponent implements OnInit {
       this.jobservice.ListIdenticalJobs = this.jobCatalog;
 
       if (localStorage['favoriteJob']) {
-        let favoriteJobList: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '{}');
+        let jobFavlist: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '{}');
         this.jobCatalog.forEach(a => {
-          favoriteJobList.forEach((y, i) => {
-            if (a.id === y.id) {
+          jobFavlist.forEach((y, i) => {
+            if (a.id == y.id) {
               a.isSelectedFavorite = y.isSelectedFavorite
             }
           })
@@ -67,14 +67,16 @@ export class ListedJobComponent implements OnInit {
      {
       item[0].isSelectedFavorite = true;
     }
-    if (localStorage['favoriteJob'] && item[0].isSelectedFavorite == false) {
-      let savedArray: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '{}')
-      savedArray.forEach((i, index) => {
-        if (i.id == item[0].id) {
-          savedArray.splice(index, 1);
+    if (localStorage['favoriteJob'] && item[0].isSelectedFavorite == false) 
+      {
+      let cachedArr: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '{}')
+      cachedArr.forEach((i, index) => {
+        if (i.id == item[0].id) 
+        {
+          cachedArr.splice(index, 1);
         }
       });
-      localStorage.setItem('favoriteJob', JSON.stringify(savedArray));
+      localStorage.setItem('favoriteJob', JSON.stringify(cachedArr));
     } else {
       this.jobservice.chosenJobArr = []
       this.JobChoice(job);
@@ -83,56 +85,32 @@ export class ListedJobComponent implements OnInit {
   }
 
   JobChoice(job: JobInfo) {
-    if (this.jobservice.chosenJobArr.length == 0) {
+    if (this.jobservice.chosenJobArr.length === 0) {
       this.jobservice.chosenJobArr.push(job);
       this.jobservice.matchingArr = this.jobservice.chosenJobArr;
       this.jobservice.favJob = this.jobservice.chosenJobArr;
-      let cachedArr: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '{}')
-      if (cachedArr.length > 0) {
-        let idMap = new Map<number, JobInfo>(cachedArr.map(obj => [obj.id, obj]));
-        for (let obj of this.jobservice.favJob) {
-          if (!idMap.has(obj.id)) {
-            cachedArr.push(obj);
-            idMap.set(obj.id, obj);
-          }
-          localStorage.setItem('favoriteJob', JSON.stringify(cachedArr))
-        }
+    } else {
+      const existingIndex = this.jobservice.chosenJobArr.findIndex(x => x.id === job.id);
+      if (existingIndex === -1) {
+        this.jobservice.matchingArr.push(job);
       } else {
-        localStorage.setItem('favoriteJob', JSON.stringify(this.jobservice.favJob))
-      }
-    }
-    else {
-      for (let i = 0; i < this.jobservice.chosenJobArr.length; i++) {
-        if (this.jobservice.chosenJobArr.find(x => x.id == job.id) == undefined) {
-          this.jobservice.matchingArr.push(job);
-          break;
-        }
-        else {
-          this.jobservice.matchingArr.forEach((item, index) => {
-            if (item.id == job.id) {
-              this.jobservice.matchingArr.splice(index, 1);
-            }
-          });
-          break;
-        }
+        this.jobservice.matchingArr.splice(existingIndex, 1);
       }
       this.jobservice.chosenJobArr = this.jobservice.matchingArr;
       this.jobservice.favJob = this.jobservice.chosenJobArr;
-      let cachedArr: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '{}')
-      if (cachedArr.length > 0) {
-        let idMap = new Map<number, JobInfo>(cachedArr.map(obj => [obj.id, obj]));
-        for (let obj of this.jobservice.favJob) {
-          if (!idMap.has(obj.id)) {
-            cachedArr.push(obj);
-            idMap.set(obj.id, obj);
-          }
-          localStorage.setItem('favoriteJob', JSON.stringify(cachedArr))
-        }
-      } else {
-        localStorage.setItem('favoriteJob', JSON.stringify(this.jobservice.favJob))
+    }
+  
+    const cachedArr: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '[]');
+    const idMap = new Map<number, JobInfo>(cachedArr.map(obj => [obj.id, obj]));
+    for (const obj of this.jobservice.favJob) {
+      if (!idMap.has(obj.id)) {
+        cachedArr.push(obj);
+        idMap.set(obj.id, obj);
       }
     }
+    localStorage.setItem('favoriteJob', JSON.stringify(cachedArr));
   }
+  
 
   jobDetail(selectedJob: JobInfo) {
     this.jobservice.ChosenJob = selectedJob;
