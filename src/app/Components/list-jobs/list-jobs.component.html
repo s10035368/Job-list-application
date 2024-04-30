@@ -1,6 +1,6 @@
 <div *ngFor="let job of jobCatalog">
       <div class="row">
-          <div class="col-md-1">
+          <div class="logoPic">
               <img src= "{{job.companyLogo}} " alt="Logo pic" />
           </div>
           <div class="col-md-7">
@@ -11,7 +11,7 @@
                   </h5>         
           </div>
           
-          <div class="col-md-1">
+          <div class="starIcon">
               <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16" stroke-width="0.1"
                   stroke="currentColor" class="w-6 h-6" (click)="PreferChoice(job)"
                   [ngClass]="{'active':job.isSelectedFavorite}">

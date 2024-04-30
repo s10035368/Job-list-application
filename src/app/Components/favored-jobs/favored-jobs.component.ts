@@ -24,15 +24,14 @@ export interface JobData {
 export class FavoriteJobsComponent  implements OnInit {
   noFavJob: string = 'No favorite job is chosen here! ';
   isFav: boolean = false;
-  favoriteJobList: JobData[] = [];
+  listofFavJobs: JobData[] = [];
 
 
-  constructor(private jobservice: JobService,
-    private router: Router) { }
+  constructor(private jobservice: JobService, private router: Router) { }
 
   ngOnInit(): void {
     if (localStorage['favoriteJob']) {
-      this.favoriteJobList = JSON.parse(localStorage.getItem('favoriteJob') || '{}');
+      this.listofFavJobs = JSON.parse(localStorage.getItem('favoriteJob') || '{}');
     }
   }
    

@@ -24,14 +24,17 @@ export interface JobData {
 export class ListedJobComponent implements OnInit {
   http = inject(HttpClient)
   jobCatalog: JobInfo[] = [];
-  isSelected: boolean = false;
+  isPreferred: boolean = false;
 
   constructor(private jobservice: JobService, private router: Router) { }
 
   ngOnInit(): void {
-    if (this.jobservice.chosenJobArr.length != 0) {
+    if (this.jobservice.chosenJobArr.length != 0) 
+    {
       this.jobCatalog = this.jobservice.ListIdenticalJobs;
-    } else {
+    } 
+    else 
+    {
       this.retrieveJobList();
     }
   }

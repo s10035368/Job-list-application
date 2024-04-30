@@ -1,6 +1,6 @@
 .main-container {
   padding: 10px;
-  background-color:#5c5959;
+  background-color:#7a7171;
 }
 
 .header {
@@ -9,14 +9,14 @@
   color: aqua;
 }
 
-.tab {
+.nav {
  overflow: hidden;
   border: 10px solid #242323;
   background-color: rgb(156, 157, 158);
   width:335px
 }
 
-.tab button {
+.nav button {
   background-color: white;
   float: left;
   height: 75px;
@@ -24,7 +24,7 @@
   font-size: 25px;
 }
 
-.tab button:hover {
+.nav button:hover {
   background-color: #bdbcbc;
 }
 

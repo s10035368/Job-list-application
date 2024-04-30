@@ -29,9 +29,7 @@ export interface JobDetailsData {
   styleUrl: 'detailed-jobs.component.css'
 })
 export class DetailedJobComponent implements OnInit {
-  constructor(private jobservice: JobService,
-    private router: Router,
-    private location: Location) { }
+  constructor(private jobservice: JobService, private router: Router, private location: Location) { }
   http = inject(HttpClient)
   jobDetails!: JobDetailsData;
 
