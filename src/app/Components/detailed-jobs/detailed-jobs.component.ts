@@ -28,7 +28,7 @@ export interface JobDetailsData {
   templateUrl: 'detailed-jobs.component.html',
   styleUrl: 'detailed-jobs.component.css'
 })
-export class JobDetailsComponent implements OnInit {
+export class DetailedJobComponent implements OnInit {
   constructor(private jobservice: JobService,
     private router: Router,
     private location: Location) { }
@@ -36,7 +36,7 @@ export class JobDetailsComponent implements OnInit {
   jobDetails!: JobDetailsData;
 
   ngOnInit(): void {
-    const ListId = this.jobservice.SelectedJob.id;
+    const ListId = this.jobservice.ChosenJob.id;
     this.retrieveJobDetails(ListId);
   }
 

@@ -37,7 +37,7 @@ export class FavoriteJobsComponent  implements OnInit {
   }
    
   jobDetail(selectedJob: JobData) {
-    this.jobservice.SelectedJob = selectedJob;
+    this.jobservice.ChosenJob = selectedJob;
     this.router.navigate(['/jobDetails']);
   }
 }

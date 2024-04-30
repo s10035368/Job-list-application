@@ -17,10 +17,10 @@ export interface JobInfo {
 
 export class JobService {
   favJob: JobInfo[] = [];
-  DuplicateJobList: JobInfo[] = [];
-  selectedJobArray: JobInfo[] = [];
-  duplicateArray : JobInfo[] = [];
-  SelectedJob!: JobInfo;
+  ListIdenticalJobs: JobInfo[] = [];
+  chosenJobArr: JobInfo[] = [];
+  matchingArr : JobInfo[] = [];
+  ChosenJob!: JobInfo;
   
   
   
