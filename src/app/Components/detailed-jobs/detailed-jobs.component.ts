@@ -37,12 +37,12 @@ export class JobDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     const ListId = this.jobservice.SelectedJob.id;
-    this.featchJobDetails(ListId);
+    this.retrieveJobDetails(ListId);
   }
 
-  featchJobDetails(id: number) {
-    const url = `${'/jobs'}/${id}`;
-    this.http.get<JobDetailsData>(url).subscribe((data => {
+  retrieveJobDetails(id: number) {
+    const address = `${'/jobs'}/${id}`;
+    this.http.get<JobDetailsData>(address).subscribe((data => {
       this.jobDetails = data;
     }))
   }

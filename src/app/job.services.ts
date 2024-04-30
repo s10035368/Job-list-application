@@ -2,7 +2,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
-export interface JobData {
+export interface JobInfo {
   id: number,
   companyName: string,
   title: string,
@@ -16,11 +16,11 @@ export interface JobData {
 })
 
 export class JobService {
-  favJob: JobData[] = [];
-  DuplicateJobList: JobData[] = [];
-  selectedJobArray: JobData[] = [];
-  duplicateArray : JobData[] = [];
-  SelectedJob!: JobData;
+  favJob: JobInfo[] = [];
+  DuplicateJobList: JobInfo[] = [];
+  selectedJobArray: JobInfo[] = [];
+  duplicateArray : JobInfo[] = [];
+  SelectedJob!: JobInfo;
   
   
   

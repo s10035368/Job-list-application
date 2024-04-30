@@ -1,20 +1,16 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-10">
             <div>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                    stroke="currentColor" class="w-6 h-6">
-                    <path stroke-linecap="round" stroke-linejoin="round"
-                        d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                    <path  d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5" />
                 </svg>
                 <button class="back" (click)="goBack()">Back</button>
-            </div>
-        </div>
+            </div> 
     </div>
 
     <div class="row">
         <div class="col">
-            <img class="companyLogo" src="{{jobDetails.companyLogo}}" alt="Brand image" width="auto" height="auto">
+            <img class="companyLogo" src="{{jobDetails.companyLogo}}" alt="Brand image">
         </div>
         <div class="col">
             <div>
@@ -23,8 +19,8 @@
                 </h2>
             </div>
             <div class="disc">
-                <span class="sec1">{{jobDetails.types}}</span>
-                <span class="sec2">{{jobDetails.industries[0]}}</span>
+                <span class="types">{{jobDetails.types}}</span>
+                <span class="industries">{{jobDetails.industries}}</span>
             </div>
         </div>
     </div>

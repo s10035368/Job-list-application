@@ -3,8 +3,7 @@ svg {
   width: 40px;
   cursor: pointer;
   padding-top: 30px;
-  color: rgba(117, 84, 87, 0.871);
-  /* margin-top: 35px; */
+  color: rgba(13, 237, 245, 0.871);
   margin-bottom: -8px;
 }
 
@@ -19,23 +18,20 @@ svg {
   height: 120px;
 }
 
-.sec1 {
-  display: inline-block;
+.types {
   color: white;
-  padding: 10px 20px;
+  padding: 10px 10px;
   margin: 0px 5px 0px 5px;
-  border-radius: 20px;
-  background-color: #5221f3;
-  margin-top: 8px;
+  border-radius: 25px;
+  background-color: #056acf;
+  font-family: Arial;
 }
 
-.sec2 {
-  display: inline-block;
+.industries{
   color: white;
-  padding: 10px 20px;
+  padding: 10px 10px;
   margin-right: 5px;
   font-family: Arial;
-  border-radius: 20px;
-  background-color: #5221f3;
-  margin-top: 8px;
+  border-radius: 25px;
+  background-color:#056acf;
 }

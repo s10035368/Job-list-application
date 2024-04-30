@@ -22,12 +22,12 @@ export interface JobData {
   styleUrl: './favored-jobs.component.css'
 })
 export class FavoriteJobsComponent  implements OnInit {
-  noFavJob: string = 'No favorite job is selected here! ';
-  isFavorite: boolean = false;
+  noFavJob: string = 'No favorite job is chosen here! ';
+  isFav: boolean = false;
   favoriteJobList: JobData[] = [];
 
 
-  constructor(private commonservice: JobService,
+  constructor(private jobservice: JobService,
     private router: Router) { }
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class FavoriteJobsComponent  implements OnInit {
   }
    
   jobDetail(selectedJob: JobData) {
-    this.commonservice.SelectedJob = selectedJob;
+    this.jobservice.SelectedJob = selectedJob;
     this.router.navigate(['/jobDetails']);
   }
 }

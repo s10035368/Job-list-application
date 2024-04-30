@@ -9,8 +9,8 @@ svg {
     cursor: pointer;
 }
 
-.color-orange{
-    color: palevioletred;
+.active{
+    color: rgb(140, 28, 5); 
     
 }
 a{
