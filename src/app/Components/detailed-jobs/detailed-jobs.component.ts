@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { JobService } from '../../common.services';
+import { JobService } from '../../job.services';
 import { Location } from '@angular/common';
 
 

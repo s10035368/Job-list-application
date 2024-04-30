@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { JobService } from '../../common.services';
+import { JobService } from '../../job.services';
 import { HttpClient } from '@angular/common/http';
 
 export interface JobData {

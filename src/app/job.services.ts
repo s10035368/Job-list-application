@@ -16,17 +16,18 @@ export interface JobData {
 })
 
 export class JobService {
+  favJob: JobData[] = [];
+  DuplicateJobList: JobData[] = [];
   selectedJobArray: JobData[] = [];
   duplicateArray : JobData[] = [];
   SelectedJob!: JobData;
-  favoriteJob: JobData[] = [];
-  DuplicateJobList: JobData[] = [];
+  
   
   
   constructor(private http: HttpClient) { }
 
-fetchData() {
-  const url = '/jobs';
-  return this.http.get<[]>(url);
+collectData() {
+  const address = '/jobs';
+  return this.http.get<[]>(address);
 }
 }
