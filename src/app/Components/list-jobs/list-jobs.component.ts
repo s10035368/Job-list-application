@@ -29,12 +29,10 @@ export class ListedJobComponent implements OnInit {
   constructor(private jobservice: JobService, private router: Router) { }
 
   ngOnInit(): void {
-    if (this.jobservice.chosenJobArr.length != 0) 
-    {
+    if (this.jobservice.chosenJobArr.length != 0) {
       this.jobCatalog = this.jobservice.ListIdenticalJobs;
     } 
-    else 
-    {
+    else {
       this.retrieveJobList();
     }
   }
@@ -46,21 +44,26 @@ export class ListedJobComponent implements OnInit {
   retrieveJobList() {
     this.jobservice.collectData().subscribe(info => {
       this.jobCatalog = info;
-      this.jobservice.ListIdenticalJobs = this.jobCatalog;
-
-      if (localStorage['favoriteJob']) {
-        let jobFavlist: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '{}');
-        this.jobCatalog.forEach(a => {
-          jobFavlist.forEach((y, i) => {
-            if (a.id == y.id) {
-              a.isSelectedFavorite = y.isSelectedFavorite
-            }
-          })
-        });
-      }
-    })
+        this.jobservice.ListIdenticalJobs = this.jobCatalog;
+  
+          
+        const localStorageFav: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '[]');
+          if (localStorageFav.length > 0) {
+              this.jobCatalog.forEach(job => {
+                  localStorageFav.forEach(favoriteJob => {
+                      if (job.id == favoriteJob.id) {
+                          job.isSelectedFavorite = favoriteJob.isSelectedFavorite;
+                      }
+                  });
+              });
+          }
+      });
   }
-
+  
+  /*
+    This method toggles with isSelectedFavorite property of a job and handles the updates in local storage
+    favorites.
+  */
   PreferChoice(job: JobInfo) {
     const jobItem = this.jobCatalog.find(a => a.id === job.id);
     
@@ -80,7 +83,9 @@ export class ListedJobComponent implements OnInit {
         this.JobChoice(job);
     }
 }
-
+  /*
+    This methods handles the selecting or deselecting of a job and manages the arrays in the jobservice.
+  */
 
   JobChoice(job: JobInfo) {
     if (this.jobservice.chosenJobArr.length == 0) {
@@ -99,11 +104,11 @@ export class ListedJobComponent implements OnInit {
     }
   
     const cachedArr: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '[]');
-    const idMap = new Map<number, JobInfo>(cachedArr.map(obj => [obj.id, obj]));
-    for (const obj of this.jobservice.favJob) {
-      if (!idMap.has(obj.id)) {
-        cachedArr.push(obj);
-        idMap.set(obj.id, obj);
+    const idToJobMap = new Map<number, JobInfo>(cachedArr.map(obj => [obj.id, obj]));
+    for (const favoriteJob of this.jobservice.favJob) {
+      if (!idToJobMap.has(favoriteJob.id)) {
+        cachedArr.push(favoriteJob);
+        idToJobMap.set(favoriteJob.id, favoriteJob);
       }
     }
     localStorage.setItem('favoriteJob', JSON.stringify(cachedArr));

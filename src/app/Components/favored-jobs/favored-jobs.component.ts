@@ -29,11 +29,19 @@ export class FavoriteJobsComponent  implements OnInit {
 
   constructor(private jobservice: JobService, private router: Router) { }
 
+  /*
+    initializes listofFavJobs property by have the data retrieved from local storage if it exists.
+  */
+
   ngOnInit(): void {
     if (localStorage['favoriteJob']) {
       this.listofFavJobs = JSON.parse(localStorage.getItem('favoriteJob') || '{}');
     }
   }
+
+  /*
+    this JobDetail method is needed to show the details when job is clicked
+  */
    
   jobDetail(selectedJob: JobData) {
     this.jobservice.ChosenJob = selectedJob;
