@@ -92,11 +92,13 @@ export class ListedJobComponent implements OnInit {
       this.jobservice.chosenJobArr.push(job);
       this.jobservice.matchingArr = this.jobservice.chosenJobArr;
       this.jobservice.favJob = this.jobservice.chosenJobArr;
-    } else {
-      const currentList = this.jobservice.chosenJobArr.findIndex(x => x.id === job.id);
+    } 
+    else {
+      const currentList = this.jobservice.chosenJobArr.findIndex(x => x.id == job.id);
       if (currentList == -1) {
         this.jobservice.matchingArr.push(job);
-      } else {
+      } 
+      else {
         this.jobservice.matchingArr.splice(currentList, 1);
       }
       this.jobservice.chosenJobArr = this.jobservice.matchingArr;
@@ -106,11 +108,12 @@ export class ListedJobComponent implements OnInit {
     const cachedArr: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '[]');
     const idToJobMap = new Map<number, JobInfo>(cachedArr.map(obj => [obj.id, obj]));
     for (const favoriteJob of this.jobservice.favJob) {
-      if (!idToJobMap.has(favoriteJob.id)) {
+      if (!idToJobMap.has(favoriteJob.id)) 
+        {
         cachedArr.push(favoriteJob);
         idToJobMap.set(favoriteJob.id, favoriteJob);
+        }
       }
-    }
     localStorage.setItem('favoriteJob', JSON.stringify(cachedArr));
   }
   
