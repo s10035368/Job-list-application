@@ -73,7 +73,7 @@ export class ListedJobComponent implements OnInit {
 
     if (localStorage['favoriteJob'] && !jobItem.isSelectedFavorite) {
         let cachedArr: JobInfo[] = JSON.parse(localStorage.getItem('favoriteJob') || '[]');
-        const list = cachedArr.findIndex(i => i.id == jobItem.id);
+        const list = cachedArr.findIndex(i => i.id === jobItem.id);
         if (list!== -1) {
             cachedArr.splice(list, 1);
             localStorage.setItem('favoriteJob', JSON.stringify(cachedArr));
@@ -88,14 +88,14 @@ export class ListedJobComponent implements OnInit {
   */
 
   JobChoice(job: JobInfo) {
-    if (this.jobservice.chosenJobArr.length == 0) {
+    if (this.jobservice.chosenJobArr.length === 0) {
       this.jobservice.chosenJobArr.push(job);
       this.jobservice.matchingArr = this.jobservice.chosenJobArr;
       this.jobservice.favJob = this.jobservice.chosenJobArr;
     } 
     else {
-      const currentList = this.jobservice.chosenJobArr.findIndex(x => x.id == job.id);
-      if (currentList == -1) {
+      const currentList = this.jobservice.chosenJobArr.findIndex(x => x.id === job.id);
+      if (currentList === -1) {
         this.jobservice.matchingArr.push(job);
       } 
       else {
